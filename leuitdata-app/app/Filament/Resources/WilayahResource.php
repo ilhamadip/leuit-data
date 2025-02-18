@@ -9,6 +9,7 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -17,8 +18,7 @@ class WilayahResource extends Resource
 {
     protected static ?string $model = Wilayah::class;
 
-    // Override the navigation label for singular form
-    protected static ?string $navigationLabel = 'Wilayah'; // Singular form
+    protected static ?string $pluralLabel = 'Wilayah';
 
     protected static ?string $navigationIcon = 'heroicon-s-map';
 
@@ -35,6 +35,11 @@ class WilayahResource extends Resource
         return $table
             ->columns([
                 //
+                TextColumn::make('no') -> rowIndex(),
+                TextColumn::make('kode_kecamatan'),
+                TextColumn::make('kecamatan'),
+                TextColumn::make('kode_desa'),
+                TextColumn::make('desa') -> label('Desa/Kelurahan')
             ])
             ->filters([
                 //
@@ -63,5 +68,10 @@ class WilayahResource extends Resource
             'create' => Pages\CreateWilayah::route('/create'),
             'edit' => Pages\EditWilayah::route('/{record}/edit'),
         ];
+    }
+
+    public static function canCreate(): bool
+    {
+        return false;
     }
 }

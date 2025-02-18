@@ -21,6 +21,8 @@ class SekolahResource extends Resource
     // Override the navigation label for singular form
     protected static ?string $navigationLabel = 'Sekolah'; // Singular form
 
+    protected static ?string $pluralLabel = 'Data Sekolah';
+
     // Grouping
     protected static ?string $navigationGroup = 'Data Sekolah';
 
@@ -122,7 +124,8 @@ class SekolahResource extends Resource
                 ]),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()
+                    ->modalSubmitActionLabel('Simpan')
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

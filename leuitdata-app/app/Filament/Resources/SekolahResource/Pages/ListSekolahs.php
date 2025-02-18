@@ -9,7 +9,6 @@ use Filament\Resources\Pages\ListRecords;
 class ListSekolahs extends ListRecords
 {
     protected static string $resource = SekolahResource::class;
-    protected static ?string $title = 'Data Sekolah';
 
     protected function getHeaderActions(): array
     {
